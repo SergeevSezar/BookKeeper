@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BookKeeper</string>
+    <string name="welcome_logo">welcome logo</string>
+    <string name="book_keeper">СЧЕТОВОД</string>
+    <string name="games_rules">Правила игры: перед вами будет три фигуры, две снизу и одна сверху, в двух из них будут числа.
+    Необходимо, чтобы сумма чисел из даух нижних фигур была равна числу в верхней фигуре, для этого нужно вставить недостающее число </string>
+    <string name="understand">Понятно</string>
 </resources>
