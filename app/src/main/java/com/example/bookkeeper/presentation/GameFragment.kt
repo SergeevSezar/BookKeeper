@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.bookkeeper.R
 
-class WelcomeFragment: Fragment() {
+class GameFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.welcome_fragment, container, false)
+        return inflater.inflate(R.layout.game_fragment, container, false)
     }
 }
