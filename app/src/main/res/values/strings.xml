@@ -11,4 +11,5 @@
     <string name="normal">Средний</string>
     <string name="hard">Тяжелый</string>
     <string name="question_mark">"?"</string>
+    <string name="progress_answer">правильных ответов %s (минимум %s)</string>
 </resources>
