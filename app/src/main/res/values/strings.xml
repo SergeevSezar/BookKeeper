@@ -12,4 +12,10 @@
     <string name="hard">Тяжелый</string>
     <string name="question_mark">"?"</string>
     <string name="progress_answer">правильных ответов %s (минимум %s)</string>
+    <string name="game_over">Game Over</string>
+    <string name="required_answers">Необходимое количество правильных ответов: %s</string>
+    <string name="score_answers">Ваш счет: %s</string>
+    <string name="required_percentage">Необходимый процент правильных ответов: %s</string>
+    <string name="score_percentage">Процент правильных ответов: %s</string>
+    <string name="button_retry">Попробовать снова</string>
 </resources>
