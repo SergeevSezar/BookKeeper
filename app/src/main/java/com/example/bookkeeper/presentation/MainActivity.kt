@@ -1,6 +1,6 @@
 package com.example.bookkeeper.presentation
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.bookkeeper.R
 
