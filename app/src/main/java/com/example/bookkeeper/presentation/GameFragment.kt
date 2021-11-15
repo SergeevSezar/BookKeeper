@@ -2,27 +2,24 @@ package com.example.bookkeeper.presentation
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import androidx.navigation.fragment.findNavController
-import com.example.bookkeeper.R
-import com.example.bookkeeper.databinding.GameFinishFragmentBinding
+import androidx.navigation.fragment.navArgs
 import com.example.bookkeeper.databinding.GameFragmentBinding
 import com.example.bookkeeper.domain.entity.GameResult
-import com.example.bookkeeper.domain.entity.Level
 
 class GameFragment : Fragment() {
 
-    private lateinit var level: Level
+    private val args by navArgs<GameFragmentArgs>()
 
     private val viewModelFactory by lazy {
-        GameViewModelFactory(level, requireActivity().application)
+        GameViewModelFactory(args.level, requireActivity().application)
     }
     private val viewModel: GameViewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[GameViewModel::class.java]
@@ -43,14 +40,10 @@ class GameFragment : Fragment() {
     private val binding: GameFragmentBinding
         get() = _binding ?: throw RuntimeException("GameFragmentBinding == null")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseArgs()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?):
+        savedInstanceState: Bundle?
+    ):
             View {
         _binding = GameFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -64,7 +57,7 @@ class GameFragment : Fragment() {
 
     private fun setClickListenersToOptions() {
         for (textViewOption in textViewOptions) {
-            textViewOption.setOnClickListener{
+            textViewOption.setOnClickListener {
                 viewModel.chooseAnswer(textViewOption.text.toString().toInt())
             }
         }
@@ -117,28 +110,9 @@ class GameFragment : Fragment() {
         return ContextCompat.getColor(requireContext(), colorResId)
     }
 
-    private fun parseArgs() {
-        level = requireArguments().getParcelable<Level>(KEY_LEVEL) as Level
-    }
-
     private fun launchGameFinishedFragment(gameResult: GameResult) {
-       val args = Bundle().apply {
-           putParcelable(GameFinishFragment.KEY_GAME_RESULT, gameResult)
-       }
-        findNavController().navigate(R.id.action_gameFragment_to_gameFinishFragment, args)
-    }
-
-    companion object {
-
-        const val KEY_LEVEL = "level"
-        const val NAME = "GameFragment"
-
-        fun newInstance(level: Level) : GameFragment {
-            return GameFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(KEY_LEVEL, level)
-                }
-            }
-        }
+        findNavController().navigate(
+            GameFragmentDirections.actionGameFragmentToGameFinishFragment(gameResult)
+        )
     }
 }
