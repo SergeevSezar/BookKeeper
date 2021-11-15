@@ -8,5 +8,34 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.bookkeeper.presentation.WelcomeFragment"
-        android:label="WelcomeFragment" />
+        android:label="WelcomeFragment" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_chooseLevelFragment"
+            app:destination="@id/chooseLevelFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseLevelFragment"
+        android:name="com.example.bookkeeper.presentation.ChooseLevelFragment"
+        android:label="choose_fragment"
+        tools:layout="@layout/choose_fragment" >
+        <action
+            android:id="@+id/action_chooseLevelFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.bookkeeper.presentation.GameFragment"
+        android:label="game_fragment"
+        tools:layout="@layout/game_fragment" >
+        <action
+            android:id="@+id/action_gameFragment_to_gameFinishFragment"
+            app:destination="@id/gameFinishFragment"
+            app:popUpTo="@id/gameFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFinishFragment"
+        android:name="com.example.bookkeeper.presentation.GameFinishFragment"
+        android:label="game_finish_fragment"
+        tools:layout="@layout/game_finish_fragment" />
 </navigation>
