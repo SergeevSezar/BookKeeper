@@ -1,7 +1,11 @@
 package com.example.bookkeeper.presentation
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.example.bookkeeper.R
 import com.example.bookkeeper.domain.entity.GameResult
@@ -58,3 +62,31 @@ private fun getSmileResId(isWinner: Boolean): Int {
         R.drawable.sad
     }
 }
+
+@BindingAdapter("enoughCount")
+fun bindEnoughCount(textView: TextView, isEnough: Boolean) {
+    textView.setTextColor(getColorByState(textView.context, isEnough))
+}
+
+@BindingAdapter("enoughPercent")
+fun bindEnoughPercent(progressBar: ProgressBar, isEnough: Boolean) {
+    val color = getColorByState(progressBar.context, isEnough)
+    progressBar.progressTintList = ColorStateList.valueOf(color)
+}
+
+private fun getColorByState(context: Context, state: Boolean): Int {
+    val colorResId = if (state) {
+        android.R.color.holo_green_light
+    } else {
+        android.R.color.holo_red_light
+    }
+    return ContextCompat.getColor(context, colorResId)
+}
+
+@BindingAdapter("numberAsText")
+fun bindNumberAsText(textView: TextView, count: Int) {
+    textView.text = count.toString()
+}
+
+//@BindingAdapter("onOptionClickListener")
+//fun bindOnOptionClickListener()
