@@ -25,17 +25,6 @@ class GameFragment : Fragment() {
         ViewModelProvider(this, viewModelFactory)[GameViewModel::class.java]
     }
 
-    private val textViewOptions by lazy {
-        mutableListOf<TextView>().apply {
-            add(binding.tvOption1)
-            add(binding.tvOption2)
-            add(binding.tvOption3)
-            add(binding.tvOption4)
-            add(binding.tvOption5)
-            add(binding.tvOption6)
-        }
-    }
-
     private var _binding: GameFragmentBinding? = null
     private val binding: GameFragmentBinding
         get() = _binding ?: throw RuntimeException("GameFragmentBinding == null")
@@ -54,15 +43,6 @@ class GameFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         observeViewModel()
-        setClickListenersToOptions()
-    }
-
-    private fun setClickListenersToOptions() {
-        for (textViewOption in textViewOptions) {
-            textViewOption.setOnClickListener {
-                viewModel.chooseAnswer(textViewOption.text.toString().toInt())
-            }
-        }
     }
 
     private fun observeViewModel() {

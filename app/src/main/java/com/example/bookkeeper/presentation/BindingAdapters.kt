@@ -10,6 +10,10 @@ import androidx.databinding.BindingAdapter
 import com.example.bookkeeper.R
 import com.example.bookkeeper.domain.entity.GameResult
 
+interface OnOptionClickListener {
+    fun onOptionClick(option: Int)
+}
+
 @BindingAdapter("requiresAnswers")
 fun bindRequiredAnswers(textView: TextView, count: Int) {
     textView.text = String.format(
@@ -88,5 +92,10 @@ fun bindNumberAsText(textView: TextView, count: Int) {
     textView.text = count.toString()
 }
 
-//@BindingAdapter("onOptionClickListener")
-//fun bindOnOptionClickListener()
+@BindingAdapter("onOptionClickListener")
+fun bindOnOptionClickListener(textView: TextView, clickListener: OnOptionClickListener) {
+    textView.setOnClickListener {
+        clickListener.onOptionClick(textView.text.toString().toInt())
+    }
+
+}
